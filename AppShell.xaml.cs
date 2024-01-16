@@ -1,0 +1,10 @@
+﻿namespace BookWritingApplication
+{
+    public partial class AppShell : Shell
+    {
+        public AppShell()
+        {
+            InitializeComponent();
+        }
+    }
+}
