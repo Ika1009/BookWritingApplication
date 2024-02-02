@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookWritingApplication.View.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="25" Padding="30" VerticalOptions="Center">
+
+            <!-- Virtual Shelf Display -->
+            <Label Text="Your Virtual Shelf" FontSize="24" HorizontalOptions="Center" />
+
+            <!-- Add New Book Button -->
+            <Button x:Name="AddBookButton" Text="＋ Add New Book" Clicked="OnAddBookClicked" 
+                    FontSize="18" HorizontalOptions="Center" />
+
+            <!-- Quick Access Buttons -->
+            <HorizontalStackLayout Spacing="20">
+                <Button Text="Writing Prompts" Clicked="OnWritingPromptsClicked"/>
+                <Button Text="Writer's Journal" Clicked="OnWritersJournalClicked"/>
+                <Button Text="Dictionary / Thesaurus" Clicked="OnDictionaryThesaurusClicked"/>
+                <Button Text="Settings" Clicked="OnSettingsClicked"/>
+            </HorizontalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
