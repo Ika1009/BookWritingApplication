@@ -1,6 +1,7 @@
 ﻿using SQLite;
 using System;
 using System.IO;
+using Microsoft.Maui.Storage; // Add this if using MAUI and need access to FileSystem
 
 namespace BookWritingApplication.Models
 {
@@ -27,6 +28,22 @@ namespace BookWritingApplication.Models
 
         [NotNull, MaxLength(255)]
         public string Image { get; set; }
+
+        // Settings properties directly included
+        [NotNull, MaxLength(255)]
+        public string FontSize { get; set; } = "Medium";
+
+        [NotNull, MaxLength(255)]
+        public string BackgroundColor { get; set; } = "#FFFFFF";
+
+        [NotNull, MaxLength(255)]
+        public string TextColor { get; set; } = "#000000";
+
+        [NotNull, MaxLength(255)]
+        public string Font { get; set; } = "Default";
+
+        [NotNull]
+        public bool DarkMode { get; set; } = false;
 
         // Path to the file that stores the content of this project
         [NotNull, MaxLength(255)]
@@ -56,10 +73,12 @@ namespace BookWritingApplication.Models
             Publication = publication;
             Image = image;
 
+            // Automatically generate file paths for content, research, and world-building
             ContentFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_Content.txt");
             ResearchFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_Research.txt");
             WorldBuildingFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_WorldBuilding.txt");
 
+            // Create the files to ensure paths are valid
             File.Create(ContentFilePath).Dispose();
             File.Create(ResearchFilePath).Dispose();
             File.Create(WorldBuildingFilePath).Dispose();

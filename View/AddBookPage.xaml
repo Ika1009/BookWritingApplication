@@ -2,19 +2,49 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BookWritingApplication.View.AddBookPage"
-             Title="AddBookPage">
-    <!-- Navigation bar back button -->
+             Title="Add New Project">
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Back"
                      Priority="0"
                      Order="Primary"
                      Clicked="OnBackButtonClicked"/>
     </ContentPage.ToolbarItems>
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Entry x:Name="ProjectNameEntry"
+                   Placeholder="Project Name"
+                   MaxLength="255"/>
+
+            <Entry x:Name="AuthorNameEntry"
+                   Placeholder="Author Name"
+                   MaxLength="255"/>
+
+            <Entry x:Name="GenreEntry"
+                   Placeholder="Genre"
+                   MaxLength="100"/>
+
+            <DatePicker x:Name="YearPicker"
+                        Format="yyyy"
+                        Date="{Binding Source={RelativeSource Self}, Path=Date.Year, Mode=TwoWay}"/>
+
+            <Entry x:Name="PublicationEntry"
+                   Placeholder="Publication"
+                   MaxLength="255"/>
+
+            <!-- Assuming you will implement an image picker functionality -->
+            <Button x:Name="SelectImageButton"
+                    Text="Select Image"
+                    Clicked="OnSelectImageButtonClicked"/>
+            <!-- Placeholder for image preview, assuming you will implement the image selection logic -->
+            <Image x:Name="SelectedImagePreview"
+                   HeightRequest="200"
+                   Aspect="AspectFit"/>
+
+            <Button x:Name="SaveButton"
+                    Text="Save"
+                    Clicked="OnSaveButtonClicked"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
