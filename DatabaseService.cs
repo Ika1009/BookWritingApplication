@@ -20,6 +20,7 @@ namespace BookWritingApplication
             conn = new SQLiteAsyncConnection(dbPath);
             await conn.CreateTableAsync<Project>();
             await conn.CreateTableAsync<Character>();
+            await conn!.CreateTableAsync<Settings>();
         }
 
         public static async Task<List<Project>> GetAllProjectsAsync()
@@ -140,5 +141,67 @@ namespace BookWritingApplication
                 return 0; // Indicate failure
             }
         }
+        // Method to get settings for a specific project
+        public static async Task<Settings> GetSettingsByProjectIdAsync(int projectId)
+        {
+            try
+            {
+                await Init();
+                var settings = await conn!.Table<Settings>().Where(s => s.ProjectID == projectId).FirstOrDefaultAsync();
+                return settings ?? new Settings(); // Return empty settings if none found
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error retrieving settings: {ex.Message}");
+                return new Settings(); // Return default settings in case of error
+            }
+        }
+
+        // Method to add or update settings
+        // This method assumes there should only be one settings record per project,
+        // so it either updates the existing settings or creates a new one if it doesn't exist.
+        public static async Task<int> SaveSettingsAsync(Settings settings)
+        {
+            try
+            {
+                await Init();
+                var existingSettings = await conn!.Table<Settings>().Where(s => s.ProjectID == settings.ProjectID).FirstOrDefaultAsync();
+                if (existingSettings == null)
+                {
+                    return await conn.InsertAsync(settings);
+                }
+                else
+                {
+                    settings.SettingsID = existingSettings.SettingsID; // Ensure the ID matches for the update
+                    return await conn.UpdateAsync(settings);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving settings: {ex.Message}");
+                return 0; // Indicate failure
+            }
+        }
+
+        // Method to delete settings for a specific project
+        public static async Task<int> DeleteSettingsByProjectIdAsync(int projectId)
+        {
+            try
+            {
+                await Init();
+                var settings = await conn!.Table<Settings>().Where(s => s.ProjectID == projectId).FirstOrDefaultAsync();
+                if (settings != null)
+                {
+                    return await conn.DeleteAsync(settings);
+                }
+                return 0; // Indicate "nothing to delete"
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error deleting settings: {ex.Message}");
+                return 0; // Indicate failure
+            }
+        }
+
     }
 }
