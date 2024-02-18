@@ -1,0 +1,25 @@
+﻿Core concept: This app is for writers, it will be a minimalist app that focuses on an intuitive user interface. It will have a virtual shelf, and tapping on + will add a book to that shelf, this book is a representation of a writing project. Inside the book will be like a project folder; an area for writing, an area for character creation, an area for world building, and an area for note keeping. The area for writing must be distraction free and offer formatting like bold, underline, italic etc without being too overbearing. Each "project" (or book) is saved either locally.
+
+the only buttons we really need are:
+
+Writing Prompts button for warming up and ideas
+Writers Journal
++ to add a new book
+Dictionary / Thesaurus
+Settings
+
+How the app will flow:
+
+Clicking on Writing Prompts opens a page, on the left is a navigation bar that has previous saved entries, in the top left is a circled back button, in the top middle is a randomly generated writing prompt (will be provided via a database), and underneath is a distraction free text editor, where users can type. The work auto saves, otherwise it can be manually saved
+
+Clicking on Writers Journal brings you to a similar page, left hand navigation contains entries from previous dates, and again a text editor in the middle for the user to write down their thoughts. An option to also upload images
+
+Clicking on + New Book, will show a popup first, in the pop up we will want to know, Name of Book, Name of Author, Genre, once saved this will open a new window / page, where we will see Tabs on the left navigation bar (like Folder tabs, image attached, like that but vertical). At the top tab it will say "Info", in this page is more like a form. Extra details about the book, like Name, Author, Genre, Year, Publication, Image for a book cover. Under that tab will be "Research" - clicking this will switch to that "tab" and a new navigation plane will appear on the RIGHT hand side this time. Here the user can make entries about any research they do, like writing text, uploading images, linking to videos, links to urls etc. This should be like the Note app basically. Under the Research Tab will be the "Outline" tab, clicking on this the same as the previous tab happens, except this time there is a note that explains this section is to be used for outlining scenes / chapters. The tab under that should be "Characters" and this one should be like a list format, on the right side should be a new navigation menu that is split between "Primary Character" and "Secondary Character", in the middle should be a + which opens out a form, this form asks "Name of character, gender, age, ethnicity, date of birth, star sign, personality, height, weight, eye colour, hair colour etc. Once saved this then appears as a user profile in the page and clicking on it expands the information for easier view. Under characters will be the "World" tab, here the users can upload photos of their world maps, write about their world environment, write about any lore etc. Finally under that tab is the "Story" tab, clicking on this will simply allow you to start typing, in the right side there will be an area that does the following: formatting, bold, italic, underline etc
+
+It will also show the current word count, current chapter count (uses Heading / headers to keep count), how many pages written. The writing area itself should be distraction free, using a nice sans-serif font for books. It should be in A4 style
+
+There should be an option to manually save, but saving should be done automatically every 1 minute. Pressing the back button at the top, it will take us to the main landing page again.
+
+Clicking on Dictionary / Thesauras should bring up a virtual book that uses an open source dictionary in UK English, and a UK Thesaurus, I dont mind how this is presented as long as there is a search function!
+
+Finally clicking on settings should allow the user to make changes to how the app looks in terms font, writing size, accessibility options, changing the interval of auto save from 1 min to 5 min etc and any other options that may seem good!

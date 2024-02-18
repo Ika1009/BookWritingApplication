@@ -13,6 +13,20 @@
             <Button x:Name="AddBookButton" Text="＋ Add New Book" Clicked="OnAddBookClicked" 
                     FontSize="18" HorizontalOptions="Center" />
 
+            <!-- Projects List -->
+            <ListView x:Name="ProjectsListView" ItemsSource="{Binding Projects}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding ProjectName}" FontSize="18" />
+                                <!-- Add more project details as needed -->
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
             <!-- Quick Access Buttons -->
             <HorizontalStackLayout Spacing="20">
                 <Button Text="Writing Prompts" Clicked="OnWritingPromptsClicked"/>

@@ -32,11 +32,24 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error retrieving projects: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error retrieving projects: {ex.Message}", "OK");
                 return new List<Project>();
             }
         }
-
+        public static async Task<Project?> GetProjectByIdAsync(string projectId)
+        {
+            try
+            {
+                await Init();
+                return await conn!.Table<Project>().Where(p => p.ProjectID == projectId).FirstOrDefaultAsync();
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as needed
+                await Shell.Current.DisplayAlert("Error", $"Error retrieving project: {ex.Message}", "OK");
+                return null;
+            }
+        }
         public static async Task<int> AddProjectAsync(Project project)
         {
             try
@@ -47,7 +60,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error adding project: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error adding project: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }
@@ -62,7 +75,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error updating project: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error updating project: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }
@@ -77,7 +90,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error deleting project: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error deleting project: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }
@@ -91,7 +104,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error retrieving characters: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error retrieving characters: {ex.Message}", "OK");
                 return new List<Character>();
             }
         }
@@ -106,7 +119,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error adding character: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error adding character: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }
@@ -121,7 +134,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error updating character: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error updating character: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }
@@ -136,7 +149,7 @@ namespace BookWritingApplication
             catch (Exception ex)
             {
                 // Log or handle the exception as needed
-                Console.WriteLine($"Error deleting character: {ex.Message}");
+                await Shell.Current.DisplayAlert("Error", $"Error deleting character: {ex.Message}", "OK");
                 return 0; // Indicate failure
             }
         }

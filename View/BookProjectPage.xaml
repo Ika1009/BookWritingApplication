@@ -10,11 +10,20 @@
                      Order="Primary"
                      Clicked="OnBackButtonClicked"/>
     </ContentPage.ToolbarItems>
-    
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <Grid>
+        <!-- A4 size page container -->
+        <ScrollView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Margin="20">
+                <!-- Text content here -->
+                <Label Text="{Binding CurrentPageContent}" VerticalOptions="StartAndExpand" HorizontalOptions="StartAndExpand" />
+            </StackLayout>
+        </ScrollView>
+
+        <!-- Navigation buttons -->
+        <StackLayout Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalOptions="Center" VerticalOptions="End">
+            <Button Text="Previous Page" Clicked="OnPreviousPageClicked" />
+            <Button Text="Next Page" Clicked="OnNextPageClicked" />
+        </StackLayout>
+    </Grid>
 </ContentPage>

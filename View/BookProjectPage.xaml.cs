@@ -1,3 +1,4 @@
+using BookWritingApplication.Models;
 using Microsoft.Maui.Controls;
 using System;
 
@@ -7,6 +8,7 @@ namespace BookWritingApplication.View
     public partial class BookProjectPage : ContentPage
     {
         private string projectId;
+        private Project project;
 
         public string ProjectId
         {
@@ -32,9 +34,28 @@ namespace BookWritingApplication.View
             }
         }
 
-        private void LoadProject(string projectId)
+        private async void LoadProject(string projectId)
         {
-            // Implement the logic to load project details based on projectId
+            try
+            {
+                // Retrieve project details based on projectId
+                var projecttemp = await DatabaseService.GetProjectByIdAsync(projectId);
+
+                if (projecttemp != null)
+                {
+                    this.project = projecttemp;
+                }
+                else
+                {
+                    // Handle the case where project is not found
+                    await DisplayAlert("Error", "Project not found", "OK");
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log or handle the exception as needed
+                await DisplayAlert("Error", $"Error loading project: {ex.Message}", "OK");
+            }
         }
 
         // OnNavigatedTo override might not be necessary if you're using QueryProperty
