@@ -10,7 +10,7 @@ namespace BookWritingApplication
     public static class DatabaseService
     {
         private static SQLiteAsyncConnection? conn;
-        private static string dbPath = Path.Combine(FileSystem.AppDataDirectory, "projectdb.sqlite3");
+        private static readonly string dbPath = Path.Combine(FileSystem.AppDataDirectory, "projectdb.sqlite3");
 
         private static async Task Init()
         {

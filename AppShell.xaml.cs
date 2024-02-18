@@ -11,7 +11,7 @@ namespace BookWritingApplication
             Routing.RegisterRoute("mainPage", typeof(MainPage));
 
             // Register sub-routes of mainPage
-            Routing.RegisterRoute("mainPage/addBookPage", typeof(AddBookPage));
+            Routing.RegisterRoute("mainPage/bookProjectPage", typeof(BookProjectPage));
             Routing.RegisterRoute("mainPage/writingPromptsPage", typeof(WritingPromptsPage));
             Routing.RegisterRoute("mainPage/writersJournalPage", typeof(WritersJournalPage));
             Routing.RegisterRoute("mainPage/dictionaryPage", typeof(DictionaryPage));

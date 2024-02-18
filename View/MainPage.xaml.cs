@@ -1,4 +1,5 @@
-﻿using Microsoft.Maui.Controls;
+﻿using CommunityToolkit.Maui.Views;
+using Microsoft.Maui.Controls;
 using System;
 using System.Threading.Tasks;
 
@@ -13,7 +14,13 @@ namespace BookWritingApplication.View
 
         private async void OnAddBookClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("///mainPage/addBookPage");
+            var popup = new AddBookPopup();
+            popup.BookAdded += async (sender, e) =>
+            {
+                // Use the provided project ID to navigate to the correct page
+                await Shell.Current.GoToAsync($"//mainPage/bookProjectPage?projectId={e.ProjectId}");
+            };
+            await this.ShowPopupAsync(popup);
         }
 
         private async void OnWritingPromptsClicked(object sender, EventArgs e)

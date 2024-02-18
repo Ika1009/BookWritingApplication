@@ -58,12 +58,12 @@ namespace BookWritingApplication.Models
         public string WorldBuildingFilePath { get; set; }
 
         // Default constructor calls the parameterized constructor with default values
-        public Project() : this(string.Empty, string.Empty, string.Empty, DateTime.Now.Year, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty)
+        public Project() : this(string.Empty, string.Empty, string.Empty, DateTime.Now.Year, string.Empty, string.Empty)
         {
         }
 
         // Constructor with parameters for convenience
-        public Project(string projectName, string authorName, string genre, int year, string publication, string image, string contentFilePath, string researchFilePath, string worldBuildingFilePath)
+        public Project(string projectName, string authorName, string genre, int year, string publication, string image)
         {
             ProjectID = Guid.NewGuid().ToString();
             ProjectName = projectName;
@@ -72,6 +72,27 @@ namespace BookWritingApplication.Models
             Year = year;
             Publication = publication;
             Image = image;
+
+            // Automatically generate file paths for content, research, and world-building
+            ContentFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_Content.txt");
+            ResearchFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_Research.txt");
+            WorldBuildingFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_WorldBuilding.txt");
+
+            // Create the files to ensure paths are valid
+            File.Create(ContentFilePath).Dispose();
+            File.Create(ResearchFilePath).Dispose();
+            File.Create(WorldBuildingFilePath).Dispose();
+        }
+        // Constructor with parameters for convenience
+        public Project(string projectName, string authorName, string genre)
+        {
+            ProjectID = Guid.NewGuid().ToString();
+            ProjectName = projectName;
+            AuthorName = authorName;
+            Genre = genre;
+            Year = DateTime.Now.Year;
+            Publication = "";
+            Image = "";
 
             // Automatically generate file paths for content, research, and world-building
             ContentFilePath = Path.Combine(FileSystem.AppDataDirectory, $"{ProjectID}_Content.txt");
